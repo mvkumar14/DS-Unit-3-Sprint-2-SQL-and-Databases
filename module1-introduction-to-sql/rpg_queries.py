@@ -3,8 +3,8 @@ import sqlite3
 
 
 
-# this only works when the cursor is curs, but that can be made
-# an input variable to make the function general.
+# this only works when the cursor is curs, but the cursor can be turned into
+# an input variable to make the function more general.
 def amt(query):
     return len(curs.execute(query).fetchall())
 
@@ -43,10 +43,13 @@ for i in range(1,20):
 
 # Here is a better way to get the information... but I don't understand this
 # as well.
-count_items = 'SELECT character_id,count(character_id)' +
+count_items = 'SELECT character_id, count(character_id)' +
     'FROM charactercreator_character_inventory GROUP BY character_id'
+a = curs.execute(count_items)
 print(curs.execute(count_items).fetchall())
 
+count_items = 'SELECT character_id, item_id, count(character_id)' +
+    'FROM charactercreator_character_inventory GROUP BY character_id'
 # You will notice that the second value in the tuples matches
 # the values in the first output
 
