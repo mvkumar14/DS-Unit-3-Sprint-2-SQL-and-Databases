@@ -1,14 +1,17 @@
 import psycopg2
 import sqlite3
+import imp
 
 # This information is from the details panel of the elephantsql console
-dbname= "your_db_name"
+dbname = "your_db_name"
 user = "your_user"
 password = "your_password"
 host = "your_host"
 
+
 # Creating an ElephantSQL connection
-pg_conn = psycopg2.connect(dbname=dbname,
+pg_conn = psycopg2.connect(
+    dbname=dbname,
     user=user,
     password=password,
     host=host)
@@ -74,7 +77,7 @@ example_insert = """
     """ + str(characters[0][1:]) + ";"
 
 for character in characters:
-    insert_character="""
+    insert_character = """
         INSERT INTO charactercreator_character
         (name, level, exp, hp, strength, intelligence, dexterity, wisdom) VALUES
         """ + str(character[1:]) + ";"

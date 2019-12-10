@@ -3,7 +3,7 @@ import sqlite3
 import pandas as pd
 
 # This information is from the details panel of the elephantsql console
-dbname= "your_db_name"
+dbname = "your_db_name"
 user = "your_user"
 password = "your_password"
 host = "your_host"
@@ -12,13 +12,13 @@ host = "your_host"
 """ Step 1: Creating an elephantsql connection """
 # Creating an ElephantSQL connection
 pg_conn = psycopg2.connect(
-    dbname = dbname,
-    user = user,
-    password = password,
-    host = host
+    dbname=dbname,
+    user=user,
+    password=password,
+    host=host
 )
 
-#Create cursor for pg (elephantsql)
+# Create cursor for pg (elephantsql)
 pg_curs = pg_conn.cursor()
 
 
@@ -35,7 +35,7 @@ t = pd.read_csv('titanic.csv')
 print(max(t.Name.apply(lambda x: len(x))))
 
 # Turn data into a sql table
-t.to_sql("titanic",sl_conn,if_exists='replace')
+t.to_sql("titanic", sl_conn, if_exists='replace')
 
 # Retrive and print the first 5 columns of the databse
 # print(sl_conn.execute('SELECT * from titanic LIMIT(5);').fetchall())
@@ -45,14 +45,14 @@ t.to_sql("titanic",sl_conn,if_exists='replace')
 
 
 """ Step 3: setting up table for elephantsql """
-
+pg_curs.execute("CREATE TYPE sex AS ENUM ('male','female')")
 mk_table_titanic = """
     CREATE TABLE titanic(
     index SERIAL PRIMARY KEY,
     Survived INT,
     Pclass INT,
     Name VARCHAR(90),
-    Sex VARCHAR(10),
+    Sex sex,
     Age INT,
     Siblings_Spouses_Aboard INT,
     Parents_Children_Aboard INT,
@@ -62,13 +62,18 @@ mk_table_titanic = """
 # I want to try using the following for Sex:
 # CREATE TYPE sex AS ENUM ('male','female'),
 
-""" Step 4: creating table/adding values in the elephantsql db using pg_curs """
+""" Step 4: creating table/adding values in the pgsql db using pg_curs """
+# Use if you get "table already exists" error
+# pg_curs.execute('DROP TABLE titanic')
+
 # Making the table with pg_curs
 pg_curs.execute(mk_table_titanic)
 
 # Function to display the tables in the database Only works for pgsql
 # May not be super necessary right here right now, but useful when in terminal
 # with this file.
+
+
 def show_tables(cursor):
     tables = """
         SELECT *
@@ -78,6 +83,7 @@ def show_tables(cursor):
         """
     cursor.execute(tables)
     print(cursor.fetchall())
+
 
 # Uncomment to see the tables in a pgsql db
 # show_tables(pg_curs)
