@@ -10,6 +10,6 @@ df = pd.read_csv('buddymove_holidayiq.csv')
 conn = sqlite3.connect('buddymove_holidayiq.sqlite3')
 curs = conn.cursor()
 
-df.to_sql('buddymove_holidayiq.sqlite3',conn)
+df.to_sql('3',conn)
 
 print(curs.execute("SELECT *;").fetchall())

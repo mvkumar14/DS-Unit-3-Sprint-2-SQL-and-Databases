@@ -51,10 +51,10 @@ randomized, the numeric and boolean fields were left as defaults.
 Use `sqlite3` to load and write queries to explore the data, and answer the
 following questions:
 
-- How many total Characters are there?
-- How many of each specific subclass?
-- How many total Items?
-- How many of the Items are weapons? How many are not?
+- How many total Characters are there? -302
+- How many of each specific subclass? - ['mage':08,'necromancer':11,'thief':51,'cleric':75,'fighter':68]
+- How many total Items? 174
+- How many of the Items are weapons? How many are not? 37, 137
 - How many Items does each character have? (Return first 20 rows)
 - How many Weapons does each character have? (Return first 20 rows)
 - On average, how many Items does each Character have?
