@@ -56,6 +56,7 @@ nonsurvivors: 28.412
 - 5 What was the average age of each passenger class?
 {1:38.79,2:29.88,3:25.20}
 - 6 What was the average fare by passenger class? By survival?
+{1:84.25,2: 20.78,3:13.72}
 - 7 How many siblings/spouses aboard on average, by passenger class? By survival?
 - 8 How many parents/children aboard on average, by passenger class? By survival?
 - 9 Do any passengers have the same name?

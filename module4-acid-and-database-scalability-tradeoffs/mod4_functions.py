@@ -1,10 +1,10 @@
 import psycopg2
 
 # Credentials:
-dbname = 'dbname'
-user = 'user'
-password = 'password'
-host = 'host'
+dbname = 'ifoxvihb'
+user = 'ifoxvihb'
+password = 'q6Wb5q4ngbTtETbu5oq8QqgT4Q5PSaIi'
+host = 'rajje.db.elephantsql.com'
 
 # Create connection:
 pg_conn = psycopg2.connect(
@@ -29,9 +29,7 @@ def pg_queryv(query):
     pg_curs.execute(query)
     result = pg_curs.fetchall()
     pg_curs.close()
-    print(result,'\n')
-    with open('test1','a') as f:
-        f.write(str(result))
+    print(result)
     return result
 
 # This one doesn't print the output.
@@ -47,8 +45,6 @@ def pg_query(query):
     pg_curs.execute(query)
     result = pg_curs.fetchall()
     pg_curs.close()
-    with open('test1','a') as f:
-        f.write(str(result,'\n'))
     return result
 
 # If this was in a class I would still have two functions that would inherit
