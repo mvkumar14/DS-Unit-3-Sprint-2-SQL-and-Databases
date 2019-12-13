@@ -1,5 +1,5 @@
 import sqlite3
-import os # used in testing stage of code
+# import os # used in testing stage of code
 
 # Function to output results to txt file
 def write_ans(input):
@@ -61,4 +61,4 @@ squery('SELECT COUNT(DISTINCT y) FROM demo')
 curs.close()
 conn.commit()
 conn.close()
-os.remove('demo_data.db') # used in testing stage of code
+# os.remove('demo_data.db') # used in testing stage of code
